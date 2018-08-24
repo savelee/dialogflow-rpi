@@ -35,15 +35,13 @@ button.watch((err, value) => {
         led.writeSync(0);
         record.stop();
         busy = false;
-        led.unexport();
-        button.unexport();
     }
 });
 
 process.on('SIGINT', () => {
     led.unexport();
     button.unexport();
-  });
+});
 
 function stream() {
     if (busy == true) { 
