@@ -1,4 +1,4 @@
-I've created the YES-BUT... machine on a Raspberry Pi. Press a button to start, lights will turn on. - When the RPI microphone hears someone saying "..yes..but" (i.s.o a positive: "...yes..and.."); a sound will be played.
+I've created the YES-BUT... machine on a Raspberry Pi. Press a button to start. - When the RPI microphone hears someone saying "..yes..but" (i.s.o a positive: "...yes..and.."); a sound will be played and a light will turn on.
 
 # Software Setup 
 
