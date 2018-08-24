@@ -1,0 +1,24 @@
+{
+    "name": "yes-but-feedback",
+    "description": "YesBut...",
+    "version": "1.0.0",
+    "license": "Apache-2.0",
+    "author": "Lee Boonstra",
+    "private": true,
+    "scripts": {
+        "start": "node app.js"
+    },
+    "repository": "savelee/yes-but-feedback",
+    "dependencies": {
+        "@google-cloud/common": "^0.20.0",
+        "@google-cloud/speech": "2.0.0",
+        "dotenv": "~4.0.0",
+        "dialogflow": "0.6.0",
+        "grpc": "^1.4.1",
+        "node-record-lpcm16": "0.3.1",
+        "uuid": "^3.3.2",
+        "ofoff": "3.2.1",
+        "play-sound": "1.1.2",
+        "rpi-gpio": "1.0.0"
+    }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "b86ced8b-ef79-4607-b644-d9795c9e99d9",
+  "name": "FAIL",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": "BLEEP"
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 500000,
+  "webhookUsed": false,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1535110294,
+  "fallbackIntent": false,
+  "events": []
+}
