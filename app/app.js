@@ -35,6 +35,8 @@ button.watch((err, value) => {
         led.writeSync(0);
         record.stop();
         busy = false;
+        led.unexport();
+        button.unexport();
     }
 });
 
@@ -105,14 +107,12 @@ function stream() {
               console.log("   -" + match);
               
               if(match == "FAIL"){
-                blink();
                 // configure arguments for executable if any
                 player.play('buzz.wav', {}, function(err){
                   //if (err) throw err;
                 });
               }
               if(match == "CORRECT"){
-                blink();
                 // configure arguments for executable if any
                 player.play('win.wav', {}, function(err){
                   //if (err) throw err;
@@ -143,12 +143,5 @@ function stream() {
     console.log('Listening, press Ctrl+C to stop.');
   }
 
-  function blink(){
-      led.writeSync(0);
-      led.writeSync(1);
-      led.writeSync(0);
-      led.writeSync(1);
-      led.writeSync(0);
-      led.writeSync(1);
-  }
+
 
