@@ -161,7 +161,6 @@ We can do this through a bash script.
    echo open in right path
    cd /home/pi/dialogflow-rpi/app
    sudo /usr/local/bin/pm2 start /home/pi/dialogflow-rpi/app/app.js
-
    ```
 
 *Note, if you turn the RPI on, on a different location, the WIFI will need to be configured again.*
