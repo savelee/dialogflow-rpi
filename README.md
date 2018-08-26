@@ -149,12 +149,19 @@ We can do this through a bash script.
 
   `sudo nano /home/pi/.bashrc`
 
-2. Add the following lines to the end of the script:
+2. Check the path where pm2 is running:
+
+ `which pm2`
+
+ It should output something like: */usr/local/bin/pm2*
+
+3. Add the following lines to the end of the script:
 
    ```
-   echo Run node app.js at boot
+   echo open in right path
    cd /home/pi/dialogflow-rpi/app
-   sudo pm2 start app.js
+   sudo /usr/local/bin/pm2 start /home/pi/dialogflow-rpi/app/app.js
+
    ```
 
 *Note, if you turn the RPI on, on a different location, the WIFI will need to be configured again.*

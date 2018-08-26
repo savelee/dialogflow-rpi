@@ -9,50 +9,31 @@ const speech = new Speech.SpeechClient();
 const record = require('node-record-lpcm16');
 const uuidv1 = require('uuid/v1');
 
-const Gpio = require('onoff').Gpio;
-const led = new Gpio(25, 'out');
-const button = new Gpio(23, 'in', 'both');
-
 const projectId =  process.env.GCLOUD_PROJECT;
 
 const sessionClient = new dialogflow.SessionsClient();
 const sessionPath = sessionClient.sessionPath(projectId, uuidv1());
 var player = require('play-sound')({players: "aplay"});
  
+var GpioStream = require('gpio-stream');
+var button = GpioStream.readable(23);
+var led = GpioStream.writable(25);
+var busy = false;
 
-//stream();
-
-var busy = false; 
-button.watch((err, value) => {
-    if (err) {
-        console.log(err);
-    }
-
-    if(value == 0){
-        stream();
-    } else {
-        record.stop();
-        busy = false;
-    }
+button.on('data', function(chunk){
+  stream();
 });
 
-process.on('SIGINT', () => { unexport(); });
-process.on('exit', () => { unexport(); });
-process.on('SIGUSR1', () => { unexport(); });
-process.on('SIGUSR2', () => { unexport(); });
-process.on('uncaughtException', () => { unexport(); });
-
-function unexport(){
-    led.unexport();
-    button.unexport();
-}
-
 function stream() {
-    if (busy == true) { 
+    if (busy == true) {
+        record.stop();
+        busy = false;
+        led.write('0'); 
         return; 
     }
     busy = true; 
-    
+    led.write('1');
+
     console.log("Kickedprocess.");
     
     var encoding = "LINEAR16";
@@ -77,7 +58,6 @@ function stream() {
         console.log(err);
     })
     .on('data', function(data){
-        if (led.readSync() === 1) led.writeSync(0);
         console.log(data);
 
         if(data.results[0] && data.results[0].alternatives[0]){
@@ -110,14 +90,14 @@ function stream() {
               
               if(match == "FAIL"){
                 // configure arguments for executable if any
-                if (led.readSync() === 0) led.writeSync(1);
+                //led.write('1'); //led on
                 player.play('buzz.wav', {}, function(err){
                   //if (err) throw err;
                 });
               }
               if(match == "CORRECT"){
                 // configure arguments for executable if any
-                if (led.readSync() === 0) led.writeSync(1);
+                //led.write('1'); //led on
                 player.play('win.wav', {}, function(err){
                   //if (err) throw err;
                 });
