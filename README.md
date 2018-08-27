@@ -189,4 +189,4 @@ Then hit the button, and try it out. Say:
 
 Or:
 
-**"That's a great idea, and to improve it we do xyz."**
+**"That's a great idea, and to improve it we could do xyz."**
